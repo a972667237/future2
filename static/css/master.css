@@ -151,6 +151,14 @@ nav ul .active{
   padding: 24px 0;
 }
 
+.bread a{
+  color: #0e4ca1;
+}
+
+.bread a:hover{
+  text-decoration: underline;
+}
+
 .detail_left, .detail_right{
   display: inline-block;
 }
@@ -425,6 +433,7 @@ main .page_place .pagination li{
 .article_summary{
   padding: 1em;
   margin-bottom: 30px;
+  line-height: 1.5;
   background-color: #F1F2F6;
 }
 
@@ -438,7 +447,7 @@ main .page_place .pagination li{
 
 .more a{
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .info_card .main_in .in_title {
@@ -535,7 +544,7 @@ main .page_place .pagination li{
   font-size: 12px;
 }
 
-.in_p{
+.right_in p{
   width: 103%;
 }
 

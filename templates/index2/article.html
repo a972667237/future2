@@ -7,12 +7,12 @@
 {% block beforeMain %}
     <div class="bread">
         <a href="/">主页</a>
-        {% if article.article_type == 1 %}
+        {% if pageinfo == 5 %}
         > <a href="/list?type=1">研究资讯</a>
-        > <a href="/s_article?id={{ article.id }}">{{ article.title }}</a>
+        > {{ article.title }}
         {% else %}
         > <a href="/list?type=2">基础知识</a>
-        > <a href="/b_article?id={{ article.id }}">{{ article.title }}</a>
+        > {{ article.title }}
         {% endif %}
 
     </div>
@@ -38,7 +38,7 @@
             {% endfor %}
         </div>
             <div class="more_article main_out">
-            {% if article.article_type == 1 %}
+            {% if pageinfo == 5 %}
                 {% for i in more_article %}
                 <div class="more_article_card">
                     <a href="/s_article?id={{ i.pk }}">{{ i.title }}</a>
@@ -57,7 +57,7 @@
             <div class="more">
                 {% if article_front.title %}
                     <span>上一篇：</span><br><br>
-                    {% if article.article_type == 1 %}
+                    {% if pageinfo == 5 %}
                     <a href="/s_article?id={{ article_front.id }}">{{ article_front.title }}</a>
                     {% else %}
                     <a href="/b_article?id={{ article_front.id }}">{{ article_front.title }}</a>
@@ -66,7 +66,7 @@
                 {% endif %}
                 {% if article_then.title %}
                     <span>下一篇：</span><br><br>
-                    {% if article.article_type == 1 %}
+                    {% if pageinfo == 5 %}
                     <a href="/s_article?id={{ article_then.id }}">{{ article_then.title }}</a>
                     {% else %}
                     <a href="/b_article?id={{ article_then.id }}">{{ article_then.title }}</a>

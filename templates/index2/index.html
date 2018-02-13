@@ -144,12 +144,12 @@
 {#            </div>#}
             <div class="main_in right_in">
                 <div class="in_title">
-                    <span>个股期权</span>
+                    <span>{{ power.title }}</span>
                 </div>
-                <img src="/static/imgs/index_page.jpg" alt="">
-                <p class="in_p">
+                <img src="/media/{{ indexright.img_url }}" alt="">
+                    {% autoescape off %}
                     {{ power.content }}
-                </p>
+                    {% endautoescape %}
                 {% for i in bottom_img.img.all %}
                 <a href="{{ i.link }}"><img src="/media/{{ i.img_url }}" alt=""></a>
                 {% endfor %}

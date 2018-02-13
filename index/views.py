@@ -10,27 +10,28 @@ from .models import *
 
 def index(requests):
     pageinfo = 1
+    indexright = Img_all.objects.get(name="主页右下角")
     fr = Friend_link.objects.filter(isShow=True)
     hl = Search_article.objects.filter(isPublic=True, isHighLight=True).order_by('-pk')[0:5]
     info = Search_article.objects.filter(isPublic=True).order_by('-pk')[0:5]
     fi = Base_article.objects.filter(isPublic=True).order_by('-pk')[0:5]
     po = Base_article.objects.filter(isPublic=True, isGuide=True).order_by('-pk')[0:5]
     head = Page_content.objects.get(position=0)
-    bannertop = Page_text.objects.get(position=1)
-    power = Page_text.objects.get(position=0)
+    bannertop = Page_content.objects.get(position=5)
+    power = Page_content.objects.get(position=4)
     head_img = Index_img.objects.get(id=1)
     bottom_img = Index_img.objects.get(id=2)
     return render(requests, 'index2/index.html', locals())
 
 def about(requests):
-    bannertop = Page_text.objects.get(position=1)
+    bannertop = Page_content.objects.get(position=5)
     pageinfo = 2
     fr = Friend_link.objects.filter(isShow=True)
     ab = get_object_or_404(Page_content, position=1)
     return render(requests, 'index2/about.html', locals())
 
 def list(requests):
-    bannertop = Page_text.objects.get(position=1)
+    bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     kv = 0
     article_type = int(requests.GET.get('type', 1))
@@ -71,7 +72,7 @@ def list(requests):
     return render(requests, 'index2/article_list.html', locals())
 
 def introduce(requests):
-    bannertop = Page_text.objects.get(position=1)
+    bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     pageinfo = 4
     keyword = int(requests.GET.get('keyword', 0))
@@ -84,7 +85,7 @@ def introduce(requests):
     return render(requests, 'index2/info.html', locals())
 
 def s_article(requests):
-    bannertop = Page_text.objects.get(position=1)
+    bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     art_id = int(requests.GET.get('id'))
     article = get_object_or_404(Search_article, pk=art_id, isPublic=True)
@@ -113,7 +114,7 @@ def s_article(requests):
     return render(requests, 'index2/article.html', locals())
 
 def b_article(requests):
-    bannertop = Page_text.objects.get(position=1)
+    bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     art_id = int(requests.GET.get('id'))
     article = get_object_or_404(Base_article, pk=art_id, isPublic=True)
@@ -143,7 +144,7 @@ def b_article(requests):
     return render(requests, 'index2/article.html', locals())
 
 def fee(requests):
-    bannertop = Page_text.objects.get(position=1)
+    bannertop = Page_content.objects.get(position=5)
     pageinfo = 7
     fr = Friend_link.objects.filter(isShow=True)
     keyword = int(requests.GET.get('keyword', 0))
@@ -157,7 +158,7 @@ def fee(requests):
 
 class Join(View):
     def get(self, requests):
-        bannertop = Page_text.objects.get(position=1)
+        bannertop = Page_content.objects.get(position=5)
         pageinfo = 3
         fr = Friend_link.objects.filter(isShow=True)
         po = Base_article.objects.filter(isPublic=True, isGuide=True).order_by('-pk')[0:10]
@@ -186,7 +187,7 @@ class Join(View):
         return HttpResponse("提交成功")
 
 def search(requests):
-    bannertop = Page_text.objects.get(position=1)
+    bannertop = Page_content.objects.get(position=5)
     article_type = int(requests.GET.get('type', '1'))
     pageinfo = 110
     keyword = 0
