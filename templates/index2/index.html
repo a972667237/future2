@@ -1,0 +1,162 @@
+{% extends 'index2/base.html' %}
+{% block beforeMain %}
+        <div class="detail">
+          <div class="detail_left">
+              <div class="banner">
+                  <ul>
+                      {% for i in head_img.img.all %}
+                      <li><a href="{{ i.link }}"><img src="/media/{{ i.img_url }}" alt=""></a></li>
+                      {% endfor %}
+                  </ul>
+              </div>
+          </div>
+          <div class="detail_right">
+              {% autoescape off %}
+                  {{ head.content }}
+              {% endautoescape %}
+          </div>
+        </div>
+{% endblock %}
+{% block main %}
+          <div class="main_left">
+{#            <div class="main_out highlights">#}
+{#              <ul>#}
+{#                  {% for i in hl %}#}
+{#                <li>#}
+{#                  <a href="/article?id={{ i.id }}">#}
+{#                    <span>{{ i.title }}</span>#}
+{#                  </a>#}
+{#                </li>#}
+{#                  {% endfor %}#}
+{#              </ul>#}
+{#            </div>#}
+{#            <div class="main_in discovers">#}
+{#              <div class="in_title">#}
+{#                <span>研究资讯</span>#}
+{#              </div>#}
+{#              <div class="main_out">#}
+{#                <ul>#}
+{#                  {% for i in info %}#}
+{#                <li>#}
+{#                  <a href="/article?id={{ i.id }}">#}
+{#                    <span>{{ i.title }}</span>#}
+{#                  </a>#}
+{#                </li>#}
+{#                  {% endfor %}#}
+{#                </ul>#}
+{#              </div>#}
+{#            </div>#}
+            <div class="main_in discovers">
+              <div class="in_title">
+                <span>近期要闻</span>
+              </div>
+              <div class="main_out">
+                <ul>
+                  {% for i in hl %}
+                <li>
+                  <a href="/s_article?id={{ i.id }}">
+                    <span>{{ i.title }}</span>
+                  </a>
+                </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="main_in discovers">
+              <div class="in_title">
+                <span>业务指南</span>
+              </div>
+              <div class="main_out">
+                <ul>
+                  {% for i in po %}
+                <li>
+                  <a href="/b_article?id={{ i.id }}">
+                    <span>{{ i.title }}</span>
+                  </a>
+                </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="main_in discovers">
+              <div class="in_title">
+                <span>基础知识</span>
+              </div>
+              <div class="main_out">
+                <ul>
+                  {% for i in fi %}
+                <li>
+                  <a href="/b_article?id={{ i.id }}">
+                    <span>{{ i.title }}</span>
+                  </a>
+                </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            <div class="main_in discovers">
+              <div class="in_title">
+                <span>研究资讯</span>
+              </div>
+              <div class="main_out">
+                <ul>
+                  {% for i in info %}
+                <li>
+                  <a href="/s_article?id={{ i.id }}">
+                    <span>{{ i.title }}</span>
+                  </a>
+                </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="main_right">
+{#            <div class="main_out guides">#}
+{#              <ul>#}
+{#                {% for i in po %}#}
+{#                <li>#}
+{#                  <a href="/article?id={{ i.id }}">#}
+{#                    <span>{{ i.title }}</span>#}
+{#                  </a>#}
+{#                </li>#}
+{#                  {% endfor %}#}
+{#              </ul>#}
+{#            </div>#}
+{#            <div class="main_in knowledges">#}
+{#              <div class="in_title">#}
+{#                <span>基础知识</span>#}
+{#              </div>#}
+{#              <div class="main_out">#}
+{#                <ul>#}
+{#                  {% for i in fi %}#}
+{#                <li>#}
+{#                  <a href="/article?id={{ i.id }}">#}
+{#                    <span>{{ i.title }}</span>#}
+{#                  </a>#}
+{#                </li>#}
+{#                  {% endfor %}#}
+{#                </ul>#}
+{#              </div>#}
+{#            </div>#}
+{#            </div>#}
+            <div class="main_in right_in">
+                <div class="in_title">
+                    <span>个股期权</span>
+                </div>
+                <img src="/static/imgs/index_page.jpg" alt="">
+                <p class="in_p">
+                    {{ power.content }}
+                </p>
+                {% for i in bottom_img.img.all %}
+                <a href="{{ i.link }}"><img src="/media/{{ i.img_url }}" alt=""></a>
+                {% endfor %}
+            </div>
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/jquery.terseBanner.min.js"></script>
+    <script>
+        $('.banner').terseBanner();
+    </script>
+{% endblock %}

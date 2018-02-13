@@ -1,0 +1,80 @@
+{% extends 'index2/base.html' %}
+
+{% block beforeMain %}
+    <div class="bread">
+        <a href="/">主页</a>
+        > <a href="/info">加入我们</a>
+    </div>
+    <div class="bm-title">
+        <span>加入我们</span>
+    </div>
+{% endblock %}
+
+{% block main %}
+<div class="list">
+        <div class="list_left">
+            <div class="form_content">
+                <div class="form_title">
+                    {% autoescape off %}
+                        {{ jo_top.content }}
+                    {% endautoescape %}
+                </div>
+                <form action="" method="post" id="join_form">
+                    <div class="form_item">
+                        <label for="name">怎么称呼您？</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                     <div class="form_item">
+                        <label for="phone">您的联系方式？</label>
+                        <input type="text" name="phone" id="phone">
+                    </div>
+                    <div class="form_item">
+                        <label for="place">您的所在地？</label>
+                        <input type="text" name="place" id="place">
+                    </div>
+                    <div class="form_item">
+                        <label for="aim">您有什么要求？</label><br><br>
+                        <input type="radio" name="aim" value="1" id="aim_1"><label for="aim_1">业务办理</label>
+                        <input type="radio" name="aim" value="2" id="aim_2"><label for="aim_2">活动报名</label>
+                        <input type="radio" name="aim" value="3" id="aim_3"><label for="aim_3">路过，想了解一下</label>
+                        <input type="radio" name="aim" value="4" id="aim_4"><label for="aim_4">其他</label>
+                        <textarea name="others" id="other" cols="44" rows="10"></textarea>
+                    </div>
+                    {% csrf_token %}
+                    <div class="form_item">
+                        <button type="button" id="submit_button">点&nbsp;&nbsp;击&nbsp;&nbsp;提&nbsp;&nbsp;交</button>
+                    </div>
+                </form>
+                <div class="form_bottom">
+                    {% autoescape off %}
+                            {{ jo_bot.content }}
+                    {% endautoescape %}
+                </div>
+            </div>
+        </div><div class="list_right">
+            <div class="outer_link">
+                <div class="outer_title">业务指南</div>
+                {% for i in po %}
+                <a href="/b_article?id={{ i.id }}">{{ i.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $('#submit_button').click(function () {
+            $.ajax({
+                type: 'post',
+                url: '/join',
+                dataType: 'text',
+                data: $("#join_form").serialize(),
+                success: function (data) {
+                    alert(data);
+                    if (data == "提交成功") {
+                        document.location.reload();
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

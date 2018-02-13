@@ -1,0 +1,73 @@
+{% extends 'index2/base.html' %}
+
+{% block beforeMain %}
+    <div class="bread">
+        <a href="/">主页</a>
+        {% if pageinfo == 4 %}
+        > <a href="/introduce">业务信息</a>
+        {% elif pageinfo == 7 %}
+        > <a href="/fee">费率一览</a>
+        {% endif %}
+    </div>
+    <div class="bm-title">
+        {% if pageinfo == 4 %}
+            <span>业务信息</span>
+        {% elif pageinfo == 7 %}
+            <span>费率一览</span>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="list">
+        <div class="list_left">
+            <nav>
+            {% if pageinfo == 4 %}
+                <ul>
+                    {% if keyword == 0 %}
+                    <li class="active"><a href="/introduce?keyword=0">最新</a></li>
+                    {% else %}
+                    <li><a href="/introduce?keyword=0">最新</a></li>
+                    {% endif %}
+                    {% for kw in hot_key %}
+                        {% if kw.id == keyword %}
+                        <li class="active"><a href="/introduce?keyword={{ kw.id }}">{{ kw.name }}</a></li>
+                        {% else %}
+                        <li><a href="/introduce?keyword={{ kw.id }}">{{ kw.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <ul>
+                    {% if keyword == 0 %}
+                    <li class="active"><a href="/fee?keyword=0">最新</a></li>
+                    {% else %}
+                    <li><a href="/fee?keyword=0">最新</a></li>
+                    {% endif %}
+                    {% for kw in hot_key %}
+                        {% if kw.id == keyword %}
+                        <li class="active"><a href="/fee?keyword={{ kw.id }}">{{ kw.name }}</a></li>
+                        {% else %}
+                        <li><a href="/fee?keyword={{ kw.id }}">{{ kw.name }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            </nav>
+            <div class="card_place info_card">
+                {% for i in intro %}
+                <div class="main_in">
+                  <div class="in_title">
+                    <span>{{ i.title }}</span>
+                  </div>
+                  <div class="main_out">
+                      {% autoescape off %}
+                    {{ i.content }}
+                      {% endautoescape %}
+                  </div>
+                </div>
+                {% endfor %}
+        </div><div class="list_right">
+        </div>
+    </div>
+{% endblock %}
