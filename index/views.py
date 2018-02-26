@@ -10,6 +10,7 @@ from .models import *
 
 def index(requests):
     pageinfo = 1
+    spiderInfo = Spider_info.objects.all()[0]
     indexright = Img_all.objects.get(name="主页右下角")
     fr = Friend_link.objects.filter(isShow=True)
     hl = Search_article.objects.filter(isPublic=True, isHighLight=True).order_by('-pk')[0:5]
@@ -24,6 +25,7 @@ def index(requests):
     return render(requests, 'index2/index.html', locals())
 
 def about(requests):
+    spiderInfo = Spider_info.objects.all()[0]
     bannertop = Page_content.objects.get(position=5)
     pageinfo = 2
     fr = Friend_link.objects.filter(isShow=True)
@@ -31,6 +33,7 @@ def about(requests):
     return render(requests, 'index2/about.html', locals())
 
 def list(requests):
+    spiderInfo = Spider_info.objects.all()[0]
     bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     kv = 0
@@ -72,6 +75,7 @@ def list(requests):
     return render(requests, 'index2/article_list.html', locals())
 
 def introduce(requests):
+    spiderInfo = Spider_info.objects.all()[0]
     bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     pageinfo = 4
@@ -85,6 +89,7 @@ def introduce(requests):
     return render(requests, 'index2/info.html', locals())
 
 def s_article(requests):
+    spiderInfo = Spider_info.objects.all()[0]
     bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     art_id = int(requests.GET.get('id'))
@@ -114,6 +119,7 @@ def s_article(requests):
     return render(requests, 'index2/article.html', locals())
 
 def b_article(requests):
+    spiderInfo = Spider_info.objects.all()[0]
     bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     art_id = int(requests.GET.get('id'))
@@ -144,6 +150,7 @@ def b_article(requests):
     return render(requests, 'index2/article.html', locals())
 
 def fee(requests):
+    spiderInfo = Spider_info.objects.all()[0]
     bannertop = Page_content.objects.get(position=5)
     pageinfo = 7
     fr = Friend_link.objects.filter(isShow=True)
@@ -158,6 +165,7 @@ def fee(requests):
 
 class Join(View):
     def get(self, requests):
+        spiderInfo = Spider_info.objects.all()[0]
         bannertop = Page_content.objects.get(position=5)
         pageinfo = 3
         fr = Friend_link.objects.filter(isShow=True)
@@ -187,6 +195,7 @@ class Join(View):
         return HttpResponse("提交成功")
 
 def search(requests):
+    spiderInfo = Spider_info.objects.all()[0]
     bannertop = Page_content.objects.get(position=5)
     article_type = int(requests.GET.get('type', '1'))
     pageinfo = 110

@@ -169,3 +169,11 @@ class Page_text(models.Model):
 
 
 
+class Spider_info(models.Model):
+    keywords = models.CharField(u'关键词（英文逗号分隔，别超过四个关键词）', max_length=1000)
+    description = models.TextField(u'描述', max_length=1000)
+    class Meta:
+        verbose_name = '推广信息'
+        verbose_name_plural = verbose_name
+    def __unicode__(self):
+        return u'推广信息'
