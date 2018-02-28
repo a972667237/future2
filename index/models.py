@@ -7,8 +7,8 @@ from DjangoUeditor.models import UEditorField
 AIM_TYPE = (
     (1, u'业务办理'),
     (2, u'活动报名'),
-    (3, u'其他'),
-    (4, u'路过，想了解一下')
+    (3, u'路过，想了解一下'),
+    (4, u'其他'),
 )
 
 CONTENT_POS = (
