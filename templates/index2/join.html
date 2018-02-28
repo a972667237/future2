@@ -61,6 +61,7 @@
         </div>
     </div>
     <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/layer.js"></script>
     <script>
         $('#submit_button').click(function () {
             $.ajax({
@@ -69,7 +70,7 @@
                 dataType: 'text',
                 data: $("#join_form").serialize(),
                 success: function (data) {
-                    alert(data);
+                    layer.alert(data);
                     if (data == "提交成功") {
                         document.location.reload();
                     }
