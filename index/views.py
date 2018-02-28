@@ -79,7 +79,7 @@ def introduce(requests):
     bannertop = Page_content.objects.get(position=5)
     fr = Friend_link.objects.filter(isShow=True)
     pageinfo = 4
-    keyword = int(requests.GET.get('keyword', 0))
+    keyword = int(requests.GET.get('keyword', 1))
     hot_key = Introduce_Keyword.objects.all()
     if keyword == 0:
         intro = Introduce_content.objects.all()
@@ -154,7 +154,7 @@ def fee(requests):
     bannertop = Page_content.objects.get(position=5)
     pageinfo = 7
     fr = Friend_link.objects.filter(isShow=True)
-    keyword = int(requests.GET.get('keyword', 0))
+    keyword = int(requests.GET.get('keyword', 1))
     hot_key = Fee_Keyword.objects.all()
     if keyword == 0:
         intro = Fee_content.objects.all()

@@ -24,11 +24,6 @@
             <nav>
             {% if pageinfo == 4 %}
                 <ul>
-                    {% if keyword == 0 %}
-                    <li class="active"><a href="/introduce?keyword=0">最新</a></li>
-                    {% else %}
-                    <li><a href="/introduce?keyword=0">最新</a></li>
-                    {% endif %}
                     {% for kw in hot_key %}
                         {% if kw.id == keyword %}
                         <li class="active"><a href="/introduce?keyword={{ kw.id }}">{{ kw.name }}</a></li>
@@ -39,11 +34,6 @@
                 </ul>
             {% else %}
                 <ul>
-                    {% if keyword == 0 %}
-                    <li class="active"><a href="/fee?keyword=0">最新</a></li>
-                    {% else %}
-                    <li><a href="/fee?keyword=0">最新</a></li>
-                    {% endif %}
                     {% for kw in hot_key %}
                         {% if kw.id == keyword %}
                         <li class="active"><a href="/fee?keyword={{ kw.id }}">{{ kw.name }}</a></li>
