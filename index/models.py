@@ -1,7 +1,21 @@
 #coding: utf-8
 from django.db import models
 from DjangoUeditor.models import UEditorField
+import os
+from uuid import uuid4
 
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(path, filename)
+    return wrapper
 # Create your models here.
 
 AIM_TYPE = (
@@ -131,7 +145,7 @@ class Friend_link(models.Model):
 
 class Img_all(models.Model):
     name = models.CharField(u'图片名', max_length=100)
-    img_url = models.ImageField(u'图片')
+    img_url = models.ImageField(u'图片', upload_to=path_and_rename('./'))
     link = models.URLField(u'对应链接')
     class Meta:
         verbose_name = '所有图片'
